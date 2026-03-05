@@ -15,3 +15,5 @@ class Notification(models.Model):
     user = models.ForeignKey(
         Owner, on_delete=models.CASCADE, blank=True, null=True)
     text = models.TextField(blank=True, null=True)
+    reciever = models.ForeignKey(
+        Owner, on_delete=models.CASCADE, blank=True, null=True, related_name='notif_reciever')
