@@ -1,8 +1,11 @@
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+from db import Database
+
 bot = Bot('8630054747:AAGCnVlkfExp6AopLEyBP4EuG-SNZJVINXk')
 dp = Dispatcher(bot)
+db = Database('db.sqlite3')
 
 
 @dp.message_handler(commands="start")
