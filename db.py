@@ -8,9 +8,9 @@ class Database:
 
     def user_exists(self, user):
         with self.connection:
-            result = self.cursor.execute("select * from bot_owner where username == ?", (user,)).fetchmany(1)
+            result = self.cursor.execute("select * from mainapp_owner where username == ?", (user,)).fetchmany(1)
             return bool(len(result))
 
     def add_user(self, user):
         with self.connection:
-            return self.cursor.execute("insert into bot_owner (username) values (?)", (user,))
+            return self.cursor.execute("insert into mainapp_owner (username) values (?)", (user,))
