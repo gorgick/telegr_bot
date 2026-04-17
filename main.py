@@ -11,9 +11,8 @@ db = Database('db.sqlite3')
 @dp.message_handler(commands=["start"])
 async def cmd_start(message):
     if not db.user_exists(message.from_user.first_name):
-        print(message.from_user.first_name)
-        # db.add_user(message.from_user.first_name)
-    # await bot.send_message(message.chat.id, message.from_user.first_name)
+        db.add_user(message.from_user.first_name)
+    await bot.send_message(message.chat.id, message.from_user.first_name)
     button_1 = InlineKeyboardButton(text="КНОПКА 1", callback_data="button_1_click")
     button_2 = InlineKeyboardButton(text="КНОПКА 2", callback_data="button_2_click")
     button_3 = InlineKeyboardButton(text="КНОПКА 3", callback_data="button_3_click")
