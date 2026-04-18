@@ -32,10 +32,17 @@ async def send_help(message: types.Message):
         reply_markup=keyboard)
 
 
-@dp.message_handler()
-async def info(message):
-    if message.text.lower() == 'hello':
-        await bot.send_message(message.chat.id, message.from_user.first_name)
+# @dp.message_handler()
+# async def info(message):
+#     if message.text.lower() == 'hello':
+#         await bot.send_message(message.chat.id, message.from_user.first_name)
+
+
+@dp.message_handler(content_types=['text'])
+async def get_text(message):
+    text = message.text
+    t = db.create_notification(text)
+    await bot.send_message(message.chat.id, t)
 
 
 executor.start_polling(dp, skip_updates=True)

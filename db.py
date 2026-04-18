@@ -17,5 +17,6 @@ class Database:
 
     def create_notification(self, text):
         with self.connection:
-            admin = self.cursor.execute("select user_id from auth_user where username = 'admin'").fetchone()
-            return admin
+            admin = self.cursor.execute("select id from auth_user where username = 'admin'").fetchone()
+            print(admin)
+
