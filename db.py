@@ -15,8 +15,9 @@ class Database:
         with self.connection:
             return self.cursor.execute("insert into mainapp_owner (username) values (?)", (user,))
 
-    def create_notification(self, text):
+    def create_notification(self, text, user):
         with self.connection:
             admin = self.cursor.execute("select id from auth_user where username = 'admin'").fetchone()
-            print(admin)
+            user = self.cursor.execute("insert into bot_owner (username) values (?)", (user,))
+            print(admin, user)
 
