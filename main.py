@@ -40,7 +40,7 @@ async def send_help(message: types.Message):
 
 @dp.message_handler(content_types=['text'])
 async def get_text(message):
-    print(message.from_user.first_name)
+
     text = message.text
     t = db.create_notification(user=message.from_user.first_name)
     print(t)
