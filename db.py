@@ -15,9 +15,12 @@ class Database:
         with self.connection:
             return self.cursor.execute("insert into mainapp_owner (username) values (?)", (user,))
 
-    def create_notification(self, user):
+    def create_notification(self, user, text):
         with self.connection:
             admin = self.cursor.execute("select id from auth_user where username = 'admin'").fetchone()
             user_id = self.cursor.execute("select id from mainapp_owner where username == ?", (user,)).fetchone()
             print(admin, user_id)
-
+            if admin and user_id:
+                return self.cursor.execute(
+                    "insert into mainapp_notification (reciever_id, user_id, text) values (?, ?, ?) ",
+                    (admin[0], user_id[0], text))
